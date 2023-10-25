@@ -27,24 +27,29 @@ export const Container = () => {
     }
 
     const editTask = (task, id) => {
-        setToDos(toDos.map(toDo => toDo.id === id ? {...toDo, task, isEditing: !toDo.isEditing} : toDo))
+        setToDos(toDos.map(toDo => toDo.id === id ? { ...toDo, task, isEditing: !toDo.isEditing } : toDo))
     }
 
     const sortedToDos = toDos.sort((a, b) => (a.completed === b.completed ? 0 : a.completed ? 1 : -1));
 
     return (
-        <div className="bg-indigo-900 rounded max-w-[600px] lg:m-auto m-5 lg:mt-10 font-mono text-white text-center pb-1">
-            <h1 className="text-3xl text-center p-5">Tus tareas</h1>
+        <div>
+            <h1 className="text-3xl text-center p-5 font-bold text-indigo-900 dark:text-white">Tus tareas</h1>
+
+            <div className="bg-indigo-900 rounded max-w-[600px] lg:m-auto m-5 lg:mt-10 font-mono text-white text-center pb-1 dark:bg-indigo-900">
             <Form addToDo={addToDo} />
 
-            {!sortedToDos.length ? <h1 className="p-10">Aún no tienes tareas pendientes</h1> :
-            sortedToDos.map((toDo, index) => (
-                toDo.isEditing ? (
-                    <Edit editToDo={editTask} task={toDo}/>
-                ) : (
-                    <ToDo task={toDo} key={index} toggleComplete={toggleComplete} deleteToDo={deleteToDo} editToDo={editToDo} />
-                )
-            ))}
+
+                {!sortedToDos.length ? <h1 className="p-10">Aún no tienes tareas pendientes</h1> :
+                    sortedToDos.map((toDo, index) => (
+                        toDo.isEditing ? (
+                            <Edit editToDo={editTask} task={toDo} />
+                        ) : (
+                            <ToDo task={toDo} key={index} toggleComplete={toggleComplete} deleteToDo={deleteToDo} editToDo={editToDo} />
+                        )
+                    ))}
+            </div>
         </div>
+
     )
 }
