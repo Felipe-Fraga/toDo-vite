@@ -5,7 +5,7 @@ export const Edit = ({editToDo, task}) => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        editToDo(value, task.id)
+        {value.length && editToDo(value, task.id)}
         setValue('')
     }
 

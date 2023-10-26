@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Form } from "./Form"
 import { v4 as uuidv4 } from 'uuid';
 import { ToDo } from "./ToDo";
@@ -8,6 +8,18 @@ uuidv4();
 
 export const Container = () => {
     const [toDos, setToDos] = useState([])
+
+    useEffect(() => {
+        const data = window.localStorage.getItem('todoItems')
+        console.log('ejecuta 1');
+        if (data) setToDos(JSON.parse(data)) 
+    }, [])
+
+    useEffect(() => {
+        const data = JSON.stringify(toDos)
+        console.log('ejecuta 2');
+        window.localStorage.setItem('todoItems', data)
+    }, [toDos])
 
 
     const addToDo = toDo => {
