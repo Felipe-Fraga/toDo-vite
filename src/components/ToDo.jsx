@@ -3,7 +3,7 @@ import { faPenToSquare, faTrash, faCheckSquare, faSquare } from '@fortawesome/fr
 
 export const ToDo = ({ task, toggleComplete, deleteToDo, editToDo }) => {
     return (
-        <div className={`flex m-4 border rounded p-2 justify-between items-center ${task.completed ? 'border-none text-indigo-900 dark:bg-gray-900 dark:text-indigo-400' : ''}`}>
+        <div className={`flex m-4 border rounded p-2 justify-between items-center ${task.completed ? 'border-none text-indigo-900  bg-indigo-200 dark:bg-gray-900 dark:text-indigo-400' : ''}`}>
             <p onClick={() => toggleComplete(task.id)}>{task.task}</p>
             <div>
                 <FontAwesomeIcon
